@@ -1,0 +1,39 @@
+from collections import deque
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+
+    def level_order_traversal(self):
+        if not self.root:
+            return
+        
+        queue = deque([self.root])
+        while queue:
+            current = queue.popleft()
+            print(current.value, end=" ")
+            
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+
+# Example usage:
+if __name__ == "__main__":
+    tree = BinaryTree()
+    tree.root = Node(1)
+    tree.root.left = Node(2)
+    tree.root.right = Node(3)
+    tree.root.left.left = Node(4)
+    tree.root.left.right = Node(5)
+    tree.root.right.left = Node(6)
+    tree.root.right.right = Node(7)
+
+    print("Level Order Traversal:")
+    tree.level_order_traversal()
